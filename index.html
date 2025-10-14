@@ -1,0 +1,327 @@
+ <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mừng Ngày Phụ Nữ Việt Nam 20/10</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24">💖</text></svg>') 16 16, auto;
+        }
+
+        .font-dancing {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Hiệu ứng nền gradient chuyển động */
+        .gradient-bg {
+            background: linear-gradient(300deg, #fce7f3, #e9d5ff, #fecdd3);
+            background-size: 240% 240%;
+            animation: gradient-animation 12s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Cánh hoa rơi (cải tiến) */
+        .petal {
+            position: absolute;
+            background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 C0 50 0 100 50 100 S100 50 50 0 Z" fill="%23FFC0CB" opacity="0.7"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+            top: -5%;
+            pointer-events: none;
+            animation: fall-sway linear infinite;
+            z-index: 300;
+
+        }
+        
+        .petal.p2 {
+             background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 C0 50 0 100 50 100 S100 50 50 0 Z" fill="%23f472b6" opacity="0.7"/></svg>');
+        }
+         .petal.p3 {
+             background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 0 C0 50 0 100 50 100 S100 50 50 0 Z" fill="%23ec4899" opacity="0.7"/></svg>');
+        }
+
+        @keyframes fall-sway {
+            0% {
+                transform: translateY(0) rotate(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Hiệu ứng lấp lánh */
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle-anim 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle-anim {
+            0%, 100% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        
+        /* Hiệu ứng cho thiệp chúc mừng */
+        .card-container { perspective: 1000px; }
+        .card {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card.is-flipped { transform: rotateY(180deg); }
+        .card-face {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .card-back { transform: rotateY(180deg); }
+        .gift-image:hover { transform: scale(1.1); transition: transform 0.3s ease; }
+        
+        /* Hiệu ứng nút bấm */
+        .special-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+        }
+        .special-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.6);
+        }
+        
+        /* Lớp phủ & Nội dung chính */
+        #overlay, #main-content { transition: opacity 1.5s ease-in-out; }
+        #main-content { opacity: 0; }
+        #main-content.visible { opacity: 1; }
+        
+        /* Hiệu ứng chữ */
+        #main-title .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px) scale(0.5);
+            animation: letter-reveal 0.5s forwards;
+        }
+
+        @keyframes letter-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    </style>
+</head>
+<body class="gradient-bg text-gray-800 min-h-screen flex items-center justify-center p-4 relative">
+
+    <!-- Lớp phủ ban đầu -->
+    <div id="overlay" class="absolute inset-0 bg-pink-200 bg-opacity-80 backdrop-blur-sm z-50 flex flex-col items-center justify-center text-center p-4">
+        <h1 class="font-dancing text-4xl md:text-6xl text-pink-700 mb-4">Một món quà nhỏ...</h1>
+        <p class="text-lg md:text-2xl text-pink-600 mb-6">Dành tặng một nửa của thế giới !</p>
+        
+        <!-- Đồng hồ đếm ngược -->
+        <div id="countdown" class="text-white bg-pink-500 bg-opacity-70 rounded-lg px-6 py-3 mb-8 shadow-lg">
+            <h2 class="text-xl font-bold mb-2">Đếm ngược đến ngày 20/10</h2>
+            <div id="timer" class="flex justify-center space-x-4 text-2xl font-mono"></div>
+        </div>
+        
+        <button id="startButton" class="special-button bg-pink-500 text-white font-bold py-3 px-8 rounded-full text-xl shadow-lg">
+            Nhận Quà Nào!
+        </button>
+    </div>
+
+    <!-- Nội dung chính -->
+    <div id="main-content" class="text-center w-full max-w-4xl mx-auto">
+        <header class="mb-8">
+            <h1 id="main-title" class="font-dancing text-5xl md:text-7xl font-bold text-pink-600"></h1>
+            <p class="text-xl md:text-2xl mt-4 text-pink-800">Gửi đến những người phụ nữ Việt Nam tuyệt vời nhất!</p>
+        </header>
+
+        <main>
+            <div class="card-container w-full h-80 md:h-96 mb-8">
+                <div id="wishCard" class="card relative w-full h-full">
+                    <!-- Mặt trước của thiệp -->
+                    <div class="card-face card-front absolute w-full h-full">
+                         <div class="w-full h-full bg-white bg-opacity-60 backdrop-blur-sm rounded-2xl shadow-2xl flex flex-col items-center justify-center p-6 text-center border-4 border-white">
+                            <img id="giftImage" src="https://img.icons8.com/cute-clipart/128/gift.png" alt="Hộp quà" class="mb-4 cursor-pointer gift-image">
+                            <h2 class="text-2xl md:text-3xl font-semibold text-pink-700 mb-2 font-dancing">Bạn có một món quà!</h2>
+                            <p class="text-gray-600">Hãy chạm vào hộp quà để mở lời chúc nhé.</p>
+                        </div>
+                    </div>
+                    <!-- Mặt sau của thiệp -->
+                    <div id="cardBackContent" class="card-face card-back absolute w-full h-full"></div>
+                </div>
+            </div>
+            
+            <button id="revealButton" class="special-button bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-xl">
+                Xem Lời Chúc Khác
+            </button>
+        </main>
+    </div>
+
+    <!-- Âm thanh nền -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://vgmsite.com/soundtracks/genshin-impact-the-stellar-moments-vol.-4/qcvhvycxxz/2-10.%20A%20Memorable%20Encounter.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const body = document.body;
+
+        // --- Tạo hiệu ứng hoa rơi & lấp lánh ---
+        for (let i = 0; i < 40; i++) {
+            // Hoa rơi
+            if (i < 25) {
+                let petal = document.createElement('div');
+                let petalType = Math.ceil(Math.random() * 3);
+                petal.className = `petal p${petalType}`;
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.width = (Math.random() * 10 + 10) + 'px';
+                petal.style.height = petal.style.width;
+                const animationDuration = Math.random() * 7 + 8; // 8-15 giây
+                const animationDelay = Math.random() * 10;
+                petal.style.animationDuration = animationDuration + 's';
+                petal.style.animationDelay = animationDelay + 's';
+                // Thay đổi hướng lắc lư
+                if(Math.random() > 0.5) petal.style.animationDirection = 'reverse';
+                body.appendChild(petal);
+            }
+            
+            // Lấp lánh
+            let sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.animationDelay = Math.random() * 1.5 + 's';
+            body.appendChild(sparkle);
+        }
+
+        // --- Dữ liệu lời chúc ---
+        const wishes = [
+            { wish: "Chúc bạn có một ngày 20/10 thật vui vẻ, hạnh phúc và luôn xinh đẹp rạng ngời như những đóa hoa.", image: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=627", bgColor: "bg-rose-100" },
+            { wish: "Nhân ngày 20/10, chúc bạn luôn mạnh khỏe, thành công trong cuộc sống và giữ mãi nụ cười trên môi.", image: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=500&q=80", bgColor: "bg-purple-100" },
+            { wish: "Chúc cho những người phụ nữ tôi yêu quý một ngày ngập tràn yêu thương và những món quà bất ngờ.", image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=80", bgColor: "bg-yellow-100" },
+            { wish: "Bạn là nguồn cảm hứng vô tận. Chúc bạn một ngày 20/10 thật ý nghĩa và trọn vẹn niềm vui!", image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=500&q=80", bgColor: "bg-green-100" },
+            { wish: "Mong rằng mọi điều tốt đẹp nhất sẽ đến với bạn, không chỉ trong hôm nay mà trong suốt 364 ngày còn lại.", image: "https://images.unsplash.com/photo-1674017326482-2bc34041f123?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=435", bgColor: "bg-sky-100" }
+        ];
+
+        // --- Xử lý sự kiện & logic ---
+        const overlay = document.getElementById('overlay');
+        const startButton = document.getElementById('startButton');
+        const mainContent = document.getElementById('main-content');
+        const music = document.getElementById('backgroundMusic');
+        const card = document.getElementById('wishCard');
+        const giftImage = document.getElementById('giftImage');
+        const cardBack = document.getElementById('cardBackContent');
+        const revealButton = document.getElementById('revealButton');
+        const mainTitle = document.getElementById('main-title');
+        let currentWishIndex = -1;
+        
+        // --- Logic đếm ngược ---
+        const countdownElement = document.getElementById('timer');
+        const targetDate = new Date(`October 20, ${new Date().getFullYear()} 00:00:00`).getTime();
+
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = `<h2 class="text-xl font-bold">Chúc mừng ngày 20/10! 🎉</h2>`;
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `
+                <div>${days}<span class="text-xs block">Ngày</span></div>
+                <div>${hours}<span class="text-xs block">Giờ</span></div>
+                <div>${minutes}<span class="text-xs block">Phút</span></div>
+                <div>${seconds}<span class="text-xs block">Giây</span></div>
+            `;
+        }, 1000);
+
+        // --- Hiệu ứng chữ ---
+        function animateTitle() {
+            const text = "Mừng Ngày 20 Tháng 10";
+            mainTitle.innerHTML = ''; // Xóa nội dung cũ
+            text.split('').forEach((char, index) => {
+                const letterSpan = document.createElement('span');
+                letterSpan.className = 'letter';
+                letterSpan.textContent = char === ' ' ? '\u00A0' : char;
+                letterSpan.style.animationDelay = `${index * 0.05}s`;
+                mainTitle.appendChild(letterSpan);
+            });
+        }
+
+        // Bắt đầu trải nghiệm
+        startButton.addEventListener('click', () => {
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.style.display = 'none', 1500);
+
+            mainContent.classList.add('visible');
+            animateTitle();
+            music.volume = 0.3;
+            music.play().catch(e => console.log("User interaction required to play audio."));
+        });
+        
+        // Tạo mặt sau của thiệp
+        function createCardBackContent(wishData) { /* ... Giống như cũ ... */ }
+        function createCardBackContent(wishData) {
+            return `
+                <div class="w-full h-full ${wishData.bgColor} rounded-2xl shadow-2xl flex flex-col md:flex-row items-center justify-center p-4 md:p-6 overflow-hidden border-4 border-white">
+                    <img src="${wishData.image}" alt="Hình ảnh chúc mừng" class="w-32 h-32 md:w-48 md:h-48 object-cover rounded-full shadow-lg mb-4 md:mb-0 md:mr-6 flex-shrink-0 border-4 border-white">
+                    <p class="text-gray-700 text-lg md:text-xl text-center md:text-left font-semibold">
+                        ${wishData.wish}
+                    </p>
+                </div>
+            `;
+        }
+        
+        // Hiển thị lời chúc mới
+        function showNewWish() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * wishes.length);
+            } while (newIndex === currentWishIndex && wishes.length > 1);
+            currentWishIndex = newIndex;
+            
+            const randomWish = wishes[currentWishIndex];
+            cardBack.innerHTML = createCardBackContent(randomWish);
+
+            if (!card.classList.contains('is-flipped')) {
+                card.classList.add('is-flipped');
+            }
+        }
+
+        // Sự kiện click nút và hộp quà
+        giftImage.addEventListener('click', showNewWish);
+        
+        revealButton.addEventListener('click', () => {
+            if (card.classList.contains('is-flipped')) {
+                card.classList.remove('is-flipped');
+                setTimeout(showNewWish, 400);
+            } else {
+                 showNewWish();
+            }
+        });
+    </script>
+</body>
+</html>
+
