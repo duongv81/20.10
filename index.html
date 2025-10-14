@@ -12,7 +12,7 @@
         body {
             font-family: 'Quicksand', sans-serif;
             overflow: hidden;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24">💖</text></svg>') 16 16, auto;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24">💖</text></svg>') 16 16, auto;
         }
 
         .font-dancing {
@@ -173,9 +173,9 @@
         </main>
     </div>
 
-    <!-- Âm thanh nền -->
+    <!-- Âm thanh nền (ĐÃ THAY THẾ) -->
     <audio id="backgroundMusic" loop>
-        <source src="https://vgmsite.com/soundtracks/genshin-impact-the-stellar-moments-vol.-4/qcvhvycxxz/2-10.%20A%20Memorable%20Encounter.mp3" type="audio/mpeg">
+        <source src="Iced Americano.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -211,11 +211,23 @@
 
         // --- Dữ liệu lời chúc ---
         const wishes = [
+            // 5 lời chúc ban đầu
             { wish: "Chúc bạn có một ngày 20/10 thật vui vẻ, hạnh phúc và luôn xinh đẹp rạng ngời như những đóa hoa.", image: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=627", bgColor: "bg-rose-100" },
             { wish: "Nhân ngày 20/10, chúc bạn luôn mạnh khỏe, thành công trong cuộc sống và giữ mãi nụ cười trên môi.", image: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=500&q=80", bgColor: "bg-purple-100" },
             { wish: "Chúc cho những người phụ nữ tôi yêu quý một ngày ngập tràn yêu thương và những món quà bất ngờ.", image: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=80", bgColor: "bg-yellow-100" },
             { wish: "Bạn là nguồn cảm hứng vô tận. Chúc bạn một ngày 20/10 thật ý nghĩa và trọn vẹn niềm vui!", image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=500&q=80", bgColor: "bg-green-100" },
-            { wish: "Mong rằng mọi điều tốt đẹp nhất sẽ đến với bạn, không chỉ trong hôm nay mà trong suốt 364 ngày còn lại.", image: "https://images.unsplash.com/photo-1674017326482-2bc34041f123?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=435", bgColor: "bg-sky-100" }
+            { wish: "Mong rằng mọi điều tốt đẹp nhất sẽ đến với bạn, không chỉ trong hôm nay mà trong suốt 364 ngày còn lại.", image: "https://images.unsplash.com/photo-1674017326482-2bc34041f123?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=435", bgColor: "bg-sky-100" },
+            
+            // 9 lời chúc mới từ lời chúc.docx và 9 ảnh mới từ anh.docx
+            { wish: "Chúc bạn có một ngày 20/10 trọn vẹn, ấm cúng và ngọt ngào. Hãy cứ tươi tắn và lạc quan như cách bạn đã luôn làm bấy lâu nay nhé!", image: "https://images.unsplash.com/photo-1614791199038-6869a104fe5f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=387", bgColor: "bg-orange-100" },
+            { wish: "Bạn biết không, sự hiện diện của bạn làm cho mọi thứ xung quanh trở nên dễ chịu và tươi sáng hơn rất nhiều. Cảm ơn bạn vì điều đó! Chúc mừng ngày của Bạn.", image: "https://plus.unsplash.com/premium_photo-1677567938655-9e1e07657b14?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=387", bgColor: "bg-fuchsia-100" },
+            { wish: "Mong rằng ngày hôm nay, bạn sẽ nhận được thật nhiều hoa, nhiều quà, nhưng quan trọng nhất là nhận được tất cả sự yêu thương mà bạn đã trao đi bấy lâu nay.", image: "https://plus.unsplash.com/premium_photo-1677678988953-abc65b3bb2c9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=387", bgColor: "bg-red-100" },
+            { wish: "Hôm nay là ngày đặc biệt của Bạn rồi đấy! Tạm gác mọi thứ lại, chỉ cần nhớ rằng bạn xứng đáng có một ngày thật vui vẻ, được chiều chuộng và chẳng phải lo nghĩ gì cả.", image: "https://plus.unsplash.com/premium_photo-1674502312330-3276dfe981eb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=387", bgColor: "bg-violet-100" },
+            { wish: "Lời chúc thật lòng: Mong rằng không chỉ hôm nay, mà 365 ngày còn lại bạn cũng sẽ được đối xử như một nữ hoàng/cô công chúa. Bạn xứng đáng mà!", image: "https://plus.unsplash.com/premium_photo-1676070095525-801b95b26997?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=388", bgColor: "bg-lime-100" },
+            { wish: "Bạn là người bạn/đồng nghiệp/người thân tuyệt vời. Cảm ơn vì đã luôn mang đến tiếng cười và sự hỗ trợ chân thành. Chúc bạn có một ngày lễ thật ý nghĩa!", image: "https://images.unsplash.com/photo-1542801204-141ec23989d7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=387", bgColor: "bg-teal-100" },
+            { wish: "Bạn là ánh nắng, là sắc màu và là lý do để nhiều người mỉm cười mỗi ngày. Hãy cứ tỏa sáng như thế nhé!", image: "https://images.unsplash.com/photo-1526547541286-73a7aaa08f2a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=387", bgColor: "bg-cyan-100" },
+            { wish: "Chúc bạn luôn mạnh khỏe vì có sức khỏe là có tất cả. Rồi sau đó, hãy thoải mái theo đuổi mọi ước mơ điên rồ nhất của bạn!", image: "https://plus.unsplash.com/premium_photo-1676068243733-df1880c2aef8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=387", bgColor: "bg-indigo-100" },
+            { wish: "Gửi bạn lời chúc bình an, vui vẻ và không gặp phải bất kỳ chuyện bực mình nào trong ngày hôm nay. Hãy cứ tận hưởng mọi phút giây!", image: "https://plus.unsplash.com/premium_photo-1676070094538-7663fb7c2745?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=388", bgColor: "bg-pink-100" }
         ];
 
         // --- Xử lý sự kiện & logic ---
@@ -257,16 +269,41 @@
             `;
         }, 1000);
 
-        // --- Hiệu ứng chữ ---
+        // --- Hiệu ứng chữ (ĐÃ CẬP NHẬT để giữ các từ dính liền) ---
         function animateTitle() {
             const text = "Mừng Ngày 20 Tháng 10";
-            mainTitle.innerHTML = ''; // Xóa nội dung cũ
-            text.split('').forEach((char, index) => {
-                const letterSpan = document.createElement('span');
-                letterSpan.className = 'letter';
-                letterSpan.textContent = char === ' ' ? '\u00A0' : char;
-                letterSpan.style.animationDelay = `${index * 0.05}s`;
-                mainTitle.appendChild(letterSpan);
+            mainTitle.innerHTML = ''; 
+            
+            // 1. Tách chuỗi thành các từ
+            const words = text.split(' ');
+            let charIndex = 0;
+
+            words.forEach((word, wordIndex) => {
+                // 2. Tạo container cho từng từ, ngăn cách dòng (white-space: nowrap)
+                // Cần đảm bảo container này có display: inline-block để hoạt động với hiệu ứng chữ.
+                const wordSpan = document.createElement('span');
+                wordSpan.style.whiteSpace = 'nowrap';
+                wordSpan.style.display = 'inline-block'; // Quan trọng để giữ bố cục
+                
+                // 3. Từng ký tự trong từ được bọc trong span.letter
+                word.split('').forEach((char) => {
+                    const letterSpan = document.createElement('span');
+                    letterSpan.className = 'letter';
+                    letterSpan.textContent = char;
+                    letterSpan.style.animationDelay = `${charIndex * 0.05}s`;
+                    wordSpan.appendChild(letterSpan);
+                    charIndex++;
+                });
+
+                mainTitle.appendChild(wordSpan);
+
+                // 4. Thêm khoảng cách không ngắt dòng giữa các từ (ngoại trừ từ cuối cùng)
+                if (wordIndex < words.length - 1) {
+                    const spaceSpan = document.createElement('span');
+                    spaceSpan.innerHTML = '&nbsp;'; // Dùng &nbsp; để đảm bảo khoảng trắng không ngắt dòng
+                    mainTitle.appendChild(spaceSpan);
+                    charIndex++;
+                }
             });
         }
 
@@ -282,7 +319,6 @@
         });
         
         // Tạo mặt sau của thiệp
-        function createCardBackContent(wishData) { /* ... Giống như cũ ... */ }
         function createCardBackContent(wishData) {
             return `
                 <div class="w-full h-full ${wishData.bgColor} rounded-2xl shadow-2xl flex flex-col md:flex-row items-center justify-center p-4 md:p-6 overflow-hidden border-4 border-white">
@@ -324,4 +360,3 @@
     </script>
 </body>
 </html>
-
