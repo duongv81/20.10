@@ -12,7 +12,7 @@
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
-            overflow: hidden;
+            overflow: auto;
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size: 24px;"><text y="24">💖</text></svg>') 16 16, auto;
         }
 
@@ -344,6 +344,7 @@
                 margin: 10px;
                 padding: 20px;
                 width: calc(100% - 20px);
+                max-height: 95vh;
             }
             
             .form-section {
@@ -358,6 +359,13 @@
             
             .input-group input, .input-group textarea {
                 font-size: 16px; /* Prevent zoom on iOS */
+            }
+
+            /* Make create button more prominent on mobile */
+            #create-btn {
+                font-size: 1.1rem !important;
+                padding: 14px 30px !important;
+                min-width: 200px !important;
             }
         }
 
@@ -381,6 +389,45 @@
         .wish-textarea::placeholder {
             color: #999;
             font-style: italic;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 182, 193, 0.2);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff6b9d, #ffc1cc);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff4d6d, #ff9eb0);
+        }
+
+        /* Ensure form is scrollable */
+        .form-container {
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 20px auto;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Add padding to bottom for better scrolling */
+        .form-container::after {
+            content: '';
+            display: block;
+            height: 50px;
         }
     </style>
 </head>
@@ -434,7 +481,9 @@
                 </div>
             </div>
             
-            <button id="create-btn" class="btn">Tạo Trang Chúc Mừng</button>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid #f0f0f0;">
+                <button id="create-btn" class="btn" style="background: linear-gradient(135deg, #ff6b9d, #ffc1cc); font-size: 1.2rem; padding: 16px 40px; box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);">🎉 Tạo Trang Chúc Mừng 🎉</button>
+            </div>
         </div>
         
         <div id="share-section" class="hidden">
@@ -658,8 +707,29 @@
             } catch (error) {
                 console.error('Error creating page:', error);
                 alert('Lỗi tạo trang: ' + error.message);
+                // Scroll to create button to show the error
+                createBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         });
+
+        // Auto-scroll to create button when form is filled
+        function checkFormCompletion() {
+            const userName = userNameInput.value.trim();
+            const recipientName = recipientNameInput.value.trim();
+            const message = messageInput.value.trim();
+            
+            if (userName && recipientName && message) {
+                // Scroll to create button after a short delay
+                setTimeout(() => {
+                    createBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
+            }
+        }
+
+        // Add event listeners to form inputs
+        userNameInput.addEventListener('blur', checkFormCompletion);
+        recipientNameInput.addEventListener('blur', checkFormCompletion);
+        messageInput.addEventListener('blur', checkFormCompletion);
         
         copyBtn.addEventListener('click', function() {
             navigator.clipboard.writeText(shareLink.textContent)
