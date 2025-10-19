@@ -414,6 +414,31 @@
             display: block;
             height: 50px;
         }
+
+        .typing-effect {
+            overflow: hidden;
+            border-right: 2px solid #ff4d6d;
+            white-space: nowrap;
+            animation: typing 2s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ff4d6d; }
+        }
+
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 2px solid #ff4d6d;
+            white-space: nowrap;
+            animation: blink-caret 0.75s step-end infinite;
+        }
     </style>
 </head>
 <body class="gradient-bg text-gray-800 min-h-screen flex items-center justify-center p-4 relative">
@@ -882,6 +907,22 @@
             music.play().catch(e => console.log("User interaction required to play audio."));
         });
         
+        function typeText(element, text, speed = 50) {
+            element.innerHTML = '';
+            element.classList.add('typing-text');
+            
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                    element.classList.remove('typing-text');
+                }
+            }, speed);
+        }
+
         function createCardBackContent(wishData) {
             const senderName = currentWomensDayData ? currentWomensDayData.userName : 'Người Gửi Ẩn Danh';
             const recipientName = currentWomensDayData ? currentWomensDayData.recipientName : 'Người Đặc Biệt';
@@ -890,8 +931,7 @@
                 <div class="w-full h-full ${wishData.bgColor} rounded-2xl shadow-2xl flex flex-col md:flex-row items-center justify-center p-4 md:p-6 overflow-hidden border-4 border-white">
                     <img src="${wishData.image}" alt="Hình ảnh chúc mừng" class="w-32 h-32 md:w-48 md:h-48 object-cover rounded-full shadow-lg mb-4 md:mb-0 md:mr-6 flex-shrink-0 border-4 border-white">
                     <div class="flex flex-col">
-                        <p class="text-gray-700 text-lg md:text-xl text-center md:text-left font-semibold mb-4">
-                            ${wishData.wish}
+                        <p id="wish-text" class="text-gray-700 text-lg md:text-xl text-center md:text-left font-semibold mb-4 min-h-[3rem]">
                         </p>
                         <div class="text-center md:text-left">
                             <p class="text-pink-600 font-bold text-sm md:text-base">Gửi từ: ${senderName}</p>
@@ -923,6 +963,13 @@
             if (!card.classList.contains('is-flipped')) {
                 card.classList.add('is-flipped');
             }
+            
+            setTimeout(() => {
+                const wishTextElement = document.getElementById('wish-text');
+                if (wishTextElement) {
+                    typeText(wishTextElement, randomWish.wish, 30);
+                }
+            }, 500);
         }
 
         giftImage.addEventListener('click', showNewWish);
